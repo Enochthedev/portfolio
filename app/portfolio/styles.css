@@ -1,0 +1,67 @@
+.notion-card {
+  transition: all 0.2s ease-in-out;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.notion-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.notion-card-expanded {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.category-indicator {
+  height: 3px;
+  width: 100%;
+}
+
+.filter-button {
+  transition: all 0.2s ease-in-out;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.filter-button:hover {
+  transform: translateY(-1px);
+}
+
+.filter-button-active {
+  background-color: #8b5cf6;
+  color: white;
+}
+
+.filter-button-inactive {
+  background-color: white;
+  color: #1f2937;
+}
+
+.filter-button-inactive:hover {
+  background-color: rgba(139, 92, 246, 0.1);
+}
+
+.skill-tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  background-color: #f9fafb;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+}
+
+.expand-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8b5cf6;
+  font-size: 0.875rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+

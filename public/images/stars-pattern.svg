@@ -1,0 +1,14 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="stars" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+      <!-- Small star -->
+      <path d="M10 10L12 15L7 12H13L8 15L10 10Z" fill="#8B5CF6" opacity="0.3" />
+      <!-- Medium star -->
+      <path d="M30 20L33 28L25 23H35L27 28L30 20Z" fill="#FB923C" opacity="0.3" />
+      <!-- Tiny star -->
+      <path d="M40 40L41 43L38 41H42L39 43L40 40Z" fill="#8B5CF6" opacity="0.3" />
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#stars)" />
+</svg>
+
