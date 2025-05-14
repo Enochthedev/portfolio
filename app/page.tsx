@@ -158,6 +158,12 @@ export default function LandingPage() {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.7, duration: 0.8, type: "spring" }}
+                style={{
+                  fontFamily: "var(--font-bangers), cursive",
+                  letterSpacing: "0.05em",
+                  textShadow: "2px 2px 0px rgba(0,0,0,0.2)",
+                  WebkitTextStroke: "1px rgba(0,0,0,0.1)",
+                }}
               >
                 Streams, Codes
                 <br />

@@ -25,9 +25,13 @@ export function ContentTabs({ tabs, defaultValue, className }: ContentTabsProps)
   return (
     <Tabs defaultValue={defaultValue || tabs[0].value} className={className} onValueChange={setActiveTab}>
       <div className="flex justify-center mb-8">
-        <TabsList className={`grid grid-cols-${tabs.length} w-full max-w-md`}>
+        <TabsList className="flex flex-row flex-wrap justify-center gap-2 w-full max-w-3xl">
           {tabs.map((tab) => (
-            <TabsTrigger key={tab.value} value={tab.value} className="relative">
+            <TabsTrigger
+              key={tab.value}
+              value={tab.value}
+              className="relative flex-grow flex-shrink-0 min-w-[120px] px-4 py-2"
+            >
               {tab.label}
               <AnimatePresence>
                 {activeTab === tab.value && tab.emotion && (
