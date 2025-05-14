@@ -170,7 +170,24 @@ export default function LandingPage() {
           animate={isInView ? "visible" : "hidden"}
         >
           {features.map((feature, index) => (
-            <motion.div key={index} variants={itemVariants}>
+            <motion.div key={index} variants={itemVariants} className="relative">
+              <div
+                className="absolute inset-0 border-4 border-black rounded-lg pointer-events-none shadow-comic"
+                style={{
+                  backgroundImage: "url('/images/comic-pattern.svg')",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  opacity: 0.05,
+                  zIndex: 0,
+                }}
+              ></div>
+
+              {/* Comic strip corner accents */}
+              <div className="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-black rounded-tl-lg z-10 pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-black rounded-tr-lg z-10 pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-black rounded-bl-lg z-10 pointer-events-none"></div>
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-4 border-r-4 border-black rounded-br-lg z-10 pointer-events-none"></div>
+
               <FeatureCard feature={feature} index={index} delay={0} />
             </motion.div>
           ))}
