@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Persona from "@/components/Persona"
 import { NavItem } from "@/components/nav-item"
 import { useMobile } from "@/hooks/use-mobile"
@@ -103,11 +103,9 @@ export default function Header() {
                 >
                   Wave
                 </span>
-                <SheetClose asChild>
-                  <Button variant="ghost" size="icon">
-                    <X className="h-5 w-5" />
-                  </Button>
-                </SheetClose>
+                <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+                  <X className="h-5 w-5" />
+                </Button>
               </div>
               <nav className="flex flex-col gap-1 p-4 overflow-y-auto flex-grow">
                 {navItems.map((item) => (
@@ -172,4 +170,3 @@ export default function Header() {
     </header>
   )
 }
-

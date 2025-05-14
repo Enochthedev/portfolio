@@ -53,4 +53,3 @@ export function ContentTabs({ tabs, defaultValue, className }: ContentTabsProps)
     </Tabs>
   )
 }
-

@@ -53,4 +53,3 @@ export function MobileTimeline({ events, controls }: MobileTimelineProps) {
     </div>
   )
 }
-

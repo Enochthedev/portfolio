@@ -118,4 +118,3 @@ export function getCategoryTextColor(category: string): string {
       return "text-[#8B5CF6]"
   }
 }
-

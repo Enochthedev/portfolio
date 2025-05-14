@@ -1,59 +1,90 @@
 "use client"
 
-import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { useMobile } from "@/hooks/use-mobile"
 import type { Feature } from "@/types"
 
 interface FeatureCardProps {
   feature: Feature
-  index?: number
+  index: number
   delay?: number
 }
 
-/**
- * FeatureCard component for displaying feature information
- *
- * @param feature - Feature data to display
- * @param index - Index for staggered animations
- * @param delay - Base delay for animations
- */
-export function FeatureCard({ feature, index = 0, delay = 0 }: FeatureCardProps) {
-  const { title, description, icon, link, color, textColor } = feature
-  const isMobile = useMobile()
-
-  const iconBackgrounds = {
-    "Content Hub": "bg-green-500",
-    Portfolio: "bg-yellow-200",
-    "Web3 & NFTs": "bg-orange-300",
-    Community: "bg-blue-300",
+export function FeatureCard({ feature, index, delay = 0 }: FeatureCardProps) {
+  const cardVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: delay + index * 0.1,
+        type: "spring",
+        stiffness: 100,
+      },
+    },
+    hover: {
+      y: -5,
+      boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+      transition: { type: "spring", stiffness: 300 },
+    },
   }
 
-  const iconBg = iconBackgrounds[title as keyof typeof iconBackgrounds] || "bg-purple-300"
+  const iconVariants = {
+    initial: { scale: 0.8, rotate: -5 },
+    animate: {
+      scale: 1,
+      rotate: 0,
+      transition: {
+        delay: delay + index * 0.1 + 0.2,
+        type: "spring",
+        stiffness: 200,
+      },
+    },
+    hover: {
+      scale: 1.1,
+      rotate: 5,
+      transition: { type: "spring", stiffness: 300 },
+    },
+  }
+
+  const arrowVariants = {
+    initial: { x: 0 },
+    hover: {
+      x: 5,
+      transition: { type: "spring", stiffness: 300 },
+    },
+  }
 
   return (
     <motion.div
-      className={`${color} ${textColor} p-4 md:p-6 rounded-lg border-4 border-black shadow-comic`}
-      whileHover={{ y: isMobile ? -2 : -5, transition: { duration: 0.2 } }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: delay + index * 0.1, duration: 0.5 }}
+      className={`relative overflow-hidden rounded-lg shadow-md ${feature.color} p-6 h-full`}
+      variants={cardVariants}
+      initial="initial"
+      animate="animate"
+      whileHover="hover"
     >
-      <div className="flex items-start mb-3 md:mb-4">
-        <div className={cn("mr-2 md:mr-3 p-1 border-2 border-black rounded-md", iconBg)}>
-          <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center">
-            <span className="text-xl md:text-2xl">{icon}</span>
-          </div>
-        </div>
-        <h3 className="text-lg md:text-2xl font-bold">{title}</h3>
-      </div>
-      <p className="mb-3 md:mb-4 text-sm md:text-base">{description}</p>
-      <Link href={link} className="inline-flex items-center text-purple-700 font-bold text-sm md:text-base">
-        Explore <ArrowRight className="ml-1 h-3 w-3 md:h-4 md:w-4" />
+      <Link href={feature.link} className="absolute inset-0 z-10" aria-label={feature.title}>
+        <span className="sr-only">{feature.title}</span>
       </Link>
+
+      <div className="flex flex-col h-full">
+        <motion.div className="text-3xl mb-4" variants={iconVariants}>
+          {feature.icon}
+        </motion.div>
+
+        <h3 className={`text-xl font-bold mb-2 ${feature.textColor}`}>{feature.title}</h3>
+
+        <p className={`${feature.textColor} opacity-80 mb-4 flex-grow`}>{feature.description}</p>
+
+        <div className={`flex items-center ${feature.textColor} font-medium`}>
+          <span>Explore</span>
+          <motion.div variants={arrowVariants} className="ml-2">
+            <ArrowRight size={16} />
+          </motion.div>
+        </div>
+      </div>
     </motion.div>
   )
 }
-

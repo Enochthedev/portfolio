@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import { StarsBackground } from "@/components/animations/StarsBackground"
 import { FloatingClouds } from "@/components/animations/FloatingClouds"
@@ -14,6 +14,7 @@ import type { Feature } from "@/types"
 export default function LandingPage() {
   const ref = useRef<HTMLDivElement>(null)
   const isMobile = useMobile()
+  const isInView = useInView(ref, { once: true, amount: 0.3 })
 
   const features: Feature[] = [
     {
@@ -66,8 +67,31 @@ export default function LandingPage() {
     },
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100 },
+    },
+  }
+
   return (
-    <div className="relative min-h-screen overflow-hidden bg-deep-space">
+    <div
+      className="relative min-h-screen overflow-hidden"
+      style={{ background: "linear-gradient(to bottom, #1e1b4b, #3730a3, #4338ca)" }}
+    >
       {/* Background elements */}
       <StarsBackground count={isMobile ? 30 : 50} />
       <FloatingClouds />
@@ -86,7 +110,7 @@ export default function LandingPage() {
             className="relative mb-8 md:mb-0 order-2 md:order-1"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
           >
             <Image
               src="/images/wave-character.png"
@@ -119,7 +143,7 @@ export default function LandingPage() {
                 className="text-3xl md:text-5xl font-extrabold text-purple-400 comic-text text-center"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
+                transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
               >
                 Wave
               </motion.h2>
@@ -127,7 +151,7 @@ export default function LandingPage() {
                 className="text-xl md:text-2xl font-bold text-white mt-4 comic-text text-center"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.7, duration: 0.8 }}
+                transition={{ delay: 0.7, duration: 0.8, type: "spring" }}
               >
                 Streams, Codes
                 <br />
@@ -139,17 +163,19 @@ export default function LandingPage() {
 
         {/* Feature cards grid */}
         <motion.div
+          ref={ref}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
           {features.map((feature, index) => (
-            <FeatureCard key={index} feature={feature} index={index} delay={1.2} />
+            <motion.div key={index} variants={itemVariants}>
+              <FeatureCard feature={feature} index={index} delay={0} />
+            </motion.div>
           ))}
         </motion.div>
       </div>
     </div>
   )
 }
-

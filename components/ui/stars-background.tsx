@@ -32,4 +32,3 @@ export function StarsBackground({ count = 50 }: StarsBackgroundProps) {
     </div>
   )
 }
-

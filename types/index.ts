@@ -60,4 +60,3 @@ export interface Feature {
   color: string
   textColor: string
 }
-

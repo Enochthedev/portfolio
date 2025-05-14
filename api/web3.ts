@@ -78,4 +78,3 @@ export function getRarityColor(rarity: RarityLevel): string {
       return "bg-gray-500"
   }
 }
-

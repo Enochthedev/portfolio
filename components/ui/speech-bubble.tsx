@@ -40,4 +40,3 @@ export function SpeechBubble({ children, className, position = "bottom", delay =
     </motion.div>
   )
 }
-

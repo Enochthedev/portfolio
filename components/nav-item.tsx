@@ -95,4 +95,3 @@ export function NavItem({ name, path, isActive, isScrolled }: NavItemProps) {
     </div>
   )
 }
-

@@ -93,4 +93,3 @@ export function NFTCard({ nft, index, isHovered, onHover, onSelect }: NFTCardPro
     </motion.div>
   )
 }
-

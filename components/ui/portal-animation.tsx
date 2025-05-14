@@ -26,4 +26,3 @@ export function PortalAnimation({ size = 320, className }: PortalAnimationProps)
     </motion.div>
   )
 }
-

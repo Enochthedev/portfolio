@@ -43,4 +43,3 @@ export interface NFT {
   rarity: RarityLevel
   link?: string
 }
-

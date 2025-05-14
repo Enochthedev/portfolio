@@ -96,4 +96,3 @@ export function FactPanels({ panels, controls }: FactPanelsProps) {
     </div>
   )
 }
-

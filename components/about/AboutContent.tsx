@@ -1,151 +1,126 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
+import { OptimizedImage } from "@/components/ui/optimized-image"
+import Persona from "@/components/Persona"
+import { ComicCard } from "@/components/ui/ComicCard"
 
 interface AboutContentProps {
   isMobile: boolean
 }
 
 export function AboutContent({ isMobile }: AboutContentProps) {
-  if (isMobile) {
-    return (
-      <div className="flex flex-col items-center mb-12 w-full">
-        <motion.div
-          className="mb-6 relative"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <Image
-            src="/images/content.png"
-            alt="Wave character"
-            width={180}
-            height={180}
-            loading="lazy"
-            className="mx-auto"
-          />
-          <motion.div
-            className="absolute -right-2 top-0 text-3xl"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.7, duration: 0.3 }}
-          >
-            💡
-          </motion.div>
-          <motion.div
-            className="absolute -left-2 bottom-0 text-3xl"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.9, duration: 0.3 }}
-          >
-            🎮
-          </motion.div>
-        </motion.div>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  }
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-center w-full"
-        >
-          <h2 className="text-2xl font-bold mb-4 text-primary">Hello, I'm Wave!</h2>
-          <p className="text-base mb-3">
-            I'm a streamer, coder, and content creator with a passion for building communities and creating engaging
-            experiences.
-          </p>
-          <p className="text-base mb-4">
-            When I'm not coding or streaming, you might find me exploring new technologies, creating digital art, or
-            connecting with my amazing community.
-          </p>
-          <div className="flex flex-wrap justify-center gap-2 mt-4">
-            {["Streamer", "Developer", "Creator", "Web3", "Community"].map((tag, index) => (
-              <motion.span
-                key={index}
-                className="px-2 py-1 bg-primary/10 text-primary rounded-full text-xs"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6 + index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                {tag}
-              </motion.span>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    )
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100 },
+    },
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20 mx-auto">
-      <motion.div
-        className="flex justify-center"
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <div className="relative">
-          <Image
-            src="/images/content.png"
-            alt="Wave character"
-            width={300}
-            height={300}
-            loading="lazy"
-            className="mx-auto"
-          />
-          <motion.div
-            className="absolute -right-4 top-0 text-4xl"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.7, duration: 0.3 }}
-          >
-            💡
-          </motion.div>
-          <motion.div
-            className="absolute -left-4 bottom-0 text-4xl"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.9, duration: 0.3 }}
-          >
-            🎮
-          </motion.div>
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        className="text-center lg:text-left"
-      >
-        <h2 className="text-3xl font-bold mb-6 text-primary">Hello, I'm Wave!</h2>
-        <p className="text-lg mb-4">
-          I'm a streamer, coder, and content creator with a passion for building communities and creating engaging
-          experiences. My journey began with a simple love for technology and has evolved into a multifaceted adventure
-          spanning streaming, web development, and Web3 innovation.
-        </p>
-        <p className="text-lg mb-4">
-          When I'm not coding or streaming, you might find me exploring new technologies, creating digital art, or
-          connecting with my amazing community. I believe in the power of creativity and technology to bring people
-          together.
-        </p>
-        <div className="flex flex-wrap gap-2 mt-6 justify-center lg:justify-start">
-          {["Streamer", "Developer", "Creator", "Web3 Enthusiast", "Community Builder"].map((tag, index) => (
-            <motion.span
-              key={index}
-              className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6 + index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
+    <motion.div className="max-w-4xl w-full" variants={containerVariants} initial="hidden" animate="visible">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
+        <motion.div variants={itemVariants} className="flex flex-col items-center md:items-start">
+          <div className="relative mb-6">
+            <OptimizedImage
+              src="/images/about.png"
+              alt="Wave's Portrait"
+              width={300}
+              height={300}
+              className="rounded-lg shadow-glow"
+            />
+            <motion.div
+              className="absolute -bottom-4 -right-4 bg-white p-2 rounded-full shadow-lg"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 1, type: "spring", stiffness: 200 }}
             >
-              {tag}
-            </motion.span>
-          ))}
-        </div>
+              <Persona emotion="happy" size="small" />
+            </motion.div>
+          </div>
+
+          <motion.h3 className="text-xl md:text-2xl font-bold mb-2 text-primary" variants={itemVariants}>
+            Wave
+          </motion.h3>
+          <motion.p
+            className="text-sm md:text-base text-center md:text-left text-muted-foreground"
+            variants={itemVariants}
+          >
+            Streamer, Developer, Web3 Enthusiast
+          </motion.p>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <ComicCard className="h-full p-6">
+            <h3 className="text-lg md:text-xl font-bold mb-4 text-secondary">My Story</h3>
+            <div className="space-y-4 text-sm md:text-base">
+              <p>
+                Hey there! I'm Wave, a developer and content creator with a passion for building interactive web
+                experiences and sharing my journey with others.
+              </p>
+              <p>
+                What started as a hobby coding stream has evolved into a vibrant community of tech enthusiasts,
+                creators, and gamers who share a passion for innovation.
+              </p>
+              <p>
+                When I'm not streaming or coding, you can find me exploring the latest in Web3 technology, collecting
+                NFTs, or designing new features for this website!
+              </p>
+            </div>
+          </ComicCard>
+        </motion.div>
+      </div>
+
+      <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6" variants={containerVariants}>
+        <motion.div variants={itemVariants}>
+          <ComicCard className="p-4 md:p-5 h-full">
+            <div className="flex flex-col items-center text-center">
+              <div className="text-3xl mb-2">💻</div>
+              <h4 className="font-bold mb-2">Developer</h4>
+              <p className="text-sm text-muted-foreground">
+                Building with React, Next.js, and exploring the frontiers of Web3 technology.
+              </p>
+            </div>
+          </ComicCard>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <ComicCard className="p-4 md:p-5 h-full">
+            <div className="flex flex-col items-center text-center">
+              <div className="text-3xl mb-2">🎮</div>
+              <h4 className="font-bold mb-2">Streamer</h4>
+              <p className="text-sm text-muted-foreground">
+                Sharing my coding journey, gaming adventures, and creative process live on stream.
+              </p>
+            </div>
+          </ComicCard>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <ComicCard className="p-4 md:p-5 h-full">
+            <div className="flex flex-col items-center text-center">
+              <div className="text-3xl mb-2">🌐</div>
+              <h4 className="font-bold mb-2">Community Builder</h4>
+              <p className="text-sm text-muted-foreground">
+                Creating spaces for tech enthusiasts to connect, learn, and grow together.
+              </p>
+            </div>
+          </ComicCard>
+        </motion.div>
       </motion.div>
-    </div>
+    </motion.div>
   )
 }
-

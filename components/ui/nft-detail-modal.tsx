@@ -78,4 +78,3 @@ export function NFTDetailModal({ nft, onClose }: NFTDetailModalProps) {
     </AnimatePresence>
   )
 }
-

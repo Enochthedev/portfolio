@@ -52,4 +52,3 @@ export function Timeline({ events, controls }: TimelineProps) {
     </div>
   )
 }
-

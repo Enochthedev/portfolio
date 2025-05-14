@@ -38,4 +38,3 @@ export function ParallaxContainer({ children, className }: BaseProps) {
     </div>
   )
 }
-

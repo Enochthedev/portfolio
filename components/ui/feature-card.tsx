@@ -59,4 +59,3 @@ export function FeatureCard({
     </motion.div>
   )
 }
-
