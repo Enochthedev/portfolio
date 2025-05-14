@@ -19,6 +19,11 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        bangers: ["var(--font-bangers)"],
+        comicNeue: ["var(--font-comic-neue)"],
+        permanentMarker: ["var(--font-permanent-marker)"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

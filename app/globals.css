@@ -79,9 +79,50 @@
   }
 }
 
-/* Comic-style text */
+/* Comic fonts */
 .comic-text {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.comic-title {
+  font-family: var(--font-bangers);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.comic-text-body {
+  font-family: var(--font-comic-neue);
+  line-height: 1.5;
+}
+
+.comic-action-text {
+  font-family: var(--font-permanent-marker);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .comic-title {
+    letter-spacing: 0.5px;
+    font-size: 1.25rem;
+  }
+
+  .comic-action-text {
+    font-size: 0.8rem;
+  }
+
+  /* Mobile-specific improvements */
+  .mobile-nav-item {
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-nav-item:active {
+    transform: scale(0.98);
+  }
 }
 
 /* Comic-style border */
@@ -207,6 +248,10 @@
   .animate-spin-slow {
     animation: spin 8s linear infinite;
   }
+
+  .text-pop {
+    animation: textPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
 }
 
 @keyframes float {
@@ -247,5 +292,51 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes textPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  /* Reduce animation complexity for better performance */
+  .animate-float {
+    animation-duration: 8s;
+  }
+
+  .animate-pulse-slow {
+    animation-duration: 6s;
+  }
+
+  .animate-spin-slow {
+    animation-duration: 12s;
+  }
+
+  /* Improve touch targets */
+  button,
+  a {
+    min-height: 44px;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

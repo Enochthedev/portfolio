@@ -14,6 +14,48 @@ interface FeatureCardProps {
 export function FeatureCard({ feature, index, delay = 0 }: FeatureCardProps) {
   const { title, description, icon, link, color, textColor } = feature
 
+  // Text animation variants
+  const titleVariants = {
+    initial: { opacity: 0, y: -10 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: delay + index * 0.1 + 0.3,
+        duration: 0.4,
+        type: "spring",
+        stiffness: 120,
+      },
+    },
+  }
+
+  const descriptionVariants = {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: {
+        delay: delay + index * 0.1 + 0.4,
+        duration: 0.5,
+      },
+    },
+  }
+
+  const exploreVariants = {
+    initial: { opacity: 0, x: -5 },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: delay + index * 0.1 + 0.5,
+        duration: 0.3,
+      },
+    },
+    hover: {
+      x: 5,
+      transition: { type: "spring", stiffness: 300 },
+    },
+  }
+
   return (
     <div className="relative w-full h-full perspective">
       {/* Comic strip styling container */}
@@ -51,6 +93,11 @@ export function FeatureCard({ feature, index, delay = 0 }: FeatureCardProps) {
           type: "spring",
           stiffness: 100,
         }}
+        whileHover={{
+          scale: 1.03,
+          transition: { type: "spring", stiffness: 300 },
+        }}
+        whileTap={{ scale: 0.98 }}
       >
         <Link href={link} className="absolute inset-0 z-20" aria-label={title}>
           <span className="sr-only">{title}</span>
@@ -75,23 +122,36 @@ export function FeatureCard({ feature, index, delay = 0 }: FeatureCardProps) {
             {icon}
           </motion.div>
 
-          <h3 className="text-xl font-bold mb-2">{title}</h3>
+          <motion.h3
+            className="text-xl md:text-2xl font-bold mb-2 comic-title"
+            variants={titleVariants}
+            initial="initial"
+            animate="animate"
+          >
+            {title}
+          </motion.h3>
 
-          <p className="opacity-80 mb-4 flex-grow">{description}</p>
+          <motion.p
+            className="opacity-80 mb-4 flex-grow comic-text-body text-sm md:text-base"
+            variants={descriptionVariants}
+            initial="initial"
+            animate="animate"
+          >
+            {description}
+          </motion.p>
 
-          <div className="flex items-center font-medium">
+          <motion.div
+            className="flex items-center font-bold comic-action-text"
+            variants={exploreVariants}
+            initial="initial"
+            animate="animate"
+            whileHover="hover"
+          >
             <span>Explore</span>
-            <motion.div
-              className="ml-2"
-              initial={{ x: 0 }}
-              whileHover={{
-                x: 5,
-                transition: { type: "spring", stiffness: 300 },
-              }}
-            >
+            <motion.div className="ml-2">
               <ArrowRight size={16} />
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </div>

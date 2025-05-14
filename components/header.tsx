@@ -21,7 +21,6 @@ const navItems = [
   { name: "Community", path: "/community" },
 ]
 
-// Update the header component to use the mobile hook and improve mobile styling
 export default function Header() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
@@ -52,7 +51,7 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
           >
             <span
-              className={`text-xl md:text-2xl font-bold ${scrolled ? "text-white" : "text-[#8B5CF6]"} comic-text`}
+              className={`text-xl md:text-2xl font-bold ${scrolled ? "text-white" : "text-[#8B5CF6]"} comic-title`}
               style={{
                 textShadow: scrolled
                   ? "2px 2px 0 #5B21B6, -1px -1px 0 #5B21B6, 1px -1px 0 #5B21B6, -1px 1px 0 #5B21B6, 1px 1px 0 #5B21B6"
@@ -91,11 +90,11 @@ export default function Header() {
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[80vw] sm:w-[350px] border-l-[#8B5CF6] p-0">
+          <SheetContent side="right" className="w-[80vw] max-w-[300px] border-l-[#8B5CF6] p-0">
             <div className="flex flex-col h-full">
               <div className="flex justify-between items-center p-4 border-b border-gray-200">
                 <span
-                  className="text-xl font-bold text-[#8B5CF6] comic-text"
+                  className="text-xl font-bold text-[#8B5CF6] comic-title"
                   style={{
                     textShadow:
                       "1px 1px 0 #5B21B6, -0.5px -0.5px 0 #5B21B6, 0.5px -0.5px 0 #5B21B6, -0.5px 0.5px 0 #5B21B6, 0.5px 0.5px 0 #5B21B6",
@@ -103,65 +102,72 @@ export default function Header() {
                 >
                   Wave
                 </span>
-                <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+                <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-8 w-8 p-0">
                   <X className="h-5 w-5" />
                 </Button>
               </div>
-              <nav className="flex flex-col gap-1 p-4 overflow-y-auto flex-grow">
-                {navItems.map((item) => (
-                  <Link
+              <nav className="flex flex-col p-2 overflow-y-auto flex-grow">
+                {navItems.map((item, index) => (
+                  <motion.div
                     key={item.path}
-                    href={item.path}
-                    className="flex items-center gap-2 p-3 rounded-md hover:bg-[#8B5CF6]/10 transition-colors relative"
-                    onClick={() => setIsOpen(false)}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05, duration: 0.3 }}
                   >
-                    {/* Mobile Nav Portal */}
-                    {pathname === item.path && (
-                      <motion.div
-                        className="absolute -z-10 left-0 top-0 w-full h-full"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                      >
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{
-                            duration: 20,
-                            repeat: Number.POSITIVE_INFINITY,
-                            ease: "linear",
-                          }}
-                          className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/4 portal-glow"
-                        >
-                          <Image
-                            src="/images/portal.png"
-                            alt="Navigation Portal"
-                            width={50}
-                            height={50}
-                            loading="lazy"
-                            className="w-12 h-12"
-                          />
-                        </motion.div>
-                      </motion.div>
-                    )}
-
-                    <Persona emotion={item.name === "About" ? "about" : item.name.toLowerCase()} size="tiny" />
-                    <span
-                      className={`text-sm font-medium relative z-10 ${pathname === item.path ? "text-[#8B5CF6]" : "text-[#4B5563]"}`}
+                    <Link
+                      href={item.path}
+                      className={`flex items-center gap-3 py-3 px-4 rounded-lg transition-colors relative ${
+                        pathname === item.path ? "bg-[#8B5CF6]/10 text-[#8B5CF6]" : "hover:bg-gray-100 text-gray-700"
+                      }`}
+                      onClick={() => setIsOpen(false)}
                     >
-                      {item.name}
-                    </span>
-                    {pathname === item.path && (
-                      <motion.div
-                        className="ml-auto w-1 h-6 bg-[#8B5CF6] rounded-full"
-                        layoutId="mobile-indicator"
-                        initial={{ height: 0 }}
-                        animate={{ height: "1.5rem" }}
-                      />
-                    )}
-                  </Link>
+                      {/* Mobile Nav Portal - Only show for active item */}
+                      {pathname === item.path && (
+                        <motion.div
+                          className="absolute -z-10 left-0 top-0 w-full h-full overflow-hidden rounded-lg"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                        >
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{
+                              duration: 20,
+                              repeat: Number.POSITIVE_INFINITY,
+                              ease: "linear",
+                            }}
+                            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/4 portal-glow"
+                            style={{ opacity: 0.5 }}
+                          >
+                            <Image
+                              src="/images/portal.png"
+                              alt="Navigation Portal"
+                              width={40}
+                              height={40}
+                              loading="lazy"
+                              className="w-10 h-10"
+                            />
+                          </motion.div>
+                        </motion.div>
+                      )}
+
+                      <div className="flex-shrink-0">
+                        <Persona emotion={item.name === "About" ? "about" : item.name.toLowerCase()} size="tiny" />
+                      </div>
+                      <span className="font-medium comic-text-body text-base">{item.name}</span>
+                      {pathname === item.path && (
+                        <motion.div
+                          className="ml-auto w-1 h-6 bg-[#8B5CF6] rounded-full"
+                          layoutId="mobile-indicator"
+                          initial={{ height: 0 }}
+                          animate={{ height: "1.5rem" }}
+                        />
+                      )}
+                    </Link>
+                  </motion.div>
                 ))}
               </nav>
               <div className="p-4 border-t border-gray-200">
-                <div className="wave-bg h-10"></div>
+                <div className="wave-bg h-6 rounded-lg"></div>
               </div>
             </div>
           </SheetContent>
