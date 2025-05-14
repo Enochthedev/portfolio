@@ -12,79 +12,88 @@ interface FeatureCardProps {
 }
 
 export function FeatureCard({ feature, index, delay = 0 }: FeatureCardProps) {
-  const cardVariants = {
-    initial: { opacity: 0, y: 20 },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        delay: delay + index * 0.1,
-        type: "spring",
-        stiffness: 100,
-      },
-    },
-    hover: {
-      y: -5,
-      boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-      transition: { type: "spring", stiffness: 300 },
-    },
-  }
-
-  const iconVariants = {
-    initial: { scale: 0.8, rotate: -5 },
-    animate: {
-      scale: 1,
-      rotate: 0,
-      transition: {
-        delay: delay + index * 0.1 + 0.2,
-        type: "spring",
-        stiffness: 200,
-      },
-    },
-    hover: {
-      scale: 1.1,
-      rotate: 5,
-      transition: { type: "spring", stiffness: 300 },
-    },
-  }
-
-  const arrowVariants = {
-    initial: { x: 0 },
-    hover: {
-      x: 5,
-      transition: { type: "spring", stiffness: 300 },
-    },
-  }
+  const { title, description, icon, link, color, textColor } = feature
 
   return (
-    <motion.div
-      className={`relative overflow-hidden rounded-lg shadow-md ${feature.color} p-6 h-full`}
-      variants={cardVariants}
-      initial="initial"
-      animate="animate"
-      whileHover="hover"
-    >
-      <Link href={feature.link} className="absolute inset-0 z-10" aria-label={feature.title}>
-        <span className="sr-only">{feature.title}</span>
-      </Link>
+    <div className="relative w-full h-full perspective">
+      {/* Comic strip styling container */}
+      <div className="absolute inset-0 border-4 border-black rounded-lg shadow-comic overflow-hidden">
+        {/* Background pattern */}
+        <div
+          className="absolute inset-0 opacity-5 z-0"
+          style={{
+            backgroundImage: "url('/images/comic-pattern.svg')",
+            backgroundSize: "cover",
+          }}
+        />
 
-      <div className="flex flex-col h-full">
-        <motion.div className="text-3xl mb-4" variants={iconVariants}>
-          {feature.icon}
-        </motion.div>
+        {/* Comic strip corner accents */}
+        <div className="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-black rounded-tl-lg z-10"></div>
+        <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-black rounded-tr-lg z-10"></div>
+        <div className="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-black rounded-bl-lg z-10"></div>
+        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-4 border-r-4 border-black rounded-br-lg z-10"></div>
 
-        <h3 className={`text-xl font-bold mb-2 ${feature.textColor}`}>{feature.title}</h3>
-
-        <p className={`${feature.textColor} opacity-80 mb-4 flex-grow`}>{feature.description}</p>
-
-        <div className={`flex items-center ${feature.textColor} font-medium`}>
-          <span>Explore</span>
-          <motion.div variants={arrowVariants} className="ml-2">
-            <ArrowRight size={16} />
-          </motion.div>
+        {/* Halftone dots pattern for comic effect */}
+        <div className="absolute inset-0 opacity-10 z-0 pointer-events-none">
+          <div className="absolute top-0 right-0 w-20 h-20 bg-black opacity-5 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-16 h-16 bg-black opacity-5 rounded-full transform translate-x-1/3 translate-y-1/3"></div>
         </div>
       </div>
-    </motion.div>
+
+      {/* Card content */}
+      <motion.div
+        className={`${color} ${textColor} p-6 rounded-lg h-full relative z-10`}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: delay + index * 0.1,
+          duration: 0.5,
+          type: "spring",
+          stiffness: 100,
+        }}
+      >
+        <Link href={link} className="absolute inset-0 z-20" aria-label={title}>
+          <span className="sr-only">{title}</span>
+        </Link>
+
+        <div className="flex flex-col h-full">
+          <motion.div
+            className="text-3xl mb-4"
+            initial={{ scale: 0.8, rotate: -5 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{
+              delay: delay + index * 0.1 + 0.2,
+              type: "spring",
+              stiffness: 200,
+            }}
+            whileHover={{
+              scale: 1.1,
+              rotate: 5,
+              transition: { type: "spring", stiffness: 300 },
+            }}
+          >
+            {icon}
+          </motion.div>
+
+          <h3 className="text-xl font-bold mb-2">{title}</h3>
+
+          <p className="opacity-80 mb-4 flex-grow">{description}</p>
+
+          <div className="flex items-center font-medium">
+            <span>Explore</span>
+            <motion.div
+              className="ml-2"
+              initial={{ x: 0 }}
+              whileHover={{
+                x: 5,
+                transition: { type: "spring", stiffness: 300 },
+              }}
+            >
+              <ArrowRight size={16} />
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
   )
 }

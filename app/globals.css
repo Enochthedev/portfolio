@@ -92,6 +92,33 @@
   box-shadow: 4px 4px 0 #000;
 }
 
+/* Enhanced comic-style box shadow */
+.shadow-comic {
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+}
+
+/* Perspective for 3D effects */
+.perspective {
+  perspective: 1000px;
+}
+
+/* Comic panel tilt effect */
+.panel-tilt-right {
+  transform: rotate(1deg);
+}
+
+.panel-tilt-left {
+  transform: rotate(-1deg);
+}
+
+/* Comic halftone pattern */
+.halftone-pattern {
+  background-image: radial-gradient(#000 1px, transparent 1px);
+  background-size: 8px 8px;
+  opacity: 0.05;
+}
+
 /* Deep space background */
 .bg-deep-space {
   background: linear-gradient(to bottom, #1e1b4b, #3730a3, #4338ca);

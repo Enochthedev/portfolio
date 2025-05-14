@@ -72,18 +72,24 @@ export default function LandingPage() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.12,
         delayChildren: 0.3,
       },
     },
   }
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 50, opacity: 0, rotate: (index) => (index % 2 === 0 ? -2 : 2) },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { type: "spring", stiffness: 100 },
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+        mass: 1,
+      },
     },
   }
 
@@ -164,30 +170,22 @@ export default function LandingPage() {
         {/* Feature cards grid */}
         <motion.div
           ref={ref}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
           {features.map((feature, index) => (
-            <motion.div key={index} variants={itemVariants} className="relative">
-              <div
-                className="absolute inset-0 border-4 border-black rounded-lg pointer-events-none shadow-comic"
-                style={{
-                  backgroundImage: "url('/images/comic-pattern.svg')",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  opacity: 0.05,
-                  zIndex: 0,
-                }}
-              ></div>
-
-              {/* Comic strip corner accents */}
-              <div className="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-black rounded-tl-lg z-10 pointer-events-none"></div>
-              <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-black rounded-tr-lg z-10 pointer-events-none"></div>
-              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-black rounded-bl-lg z-10 pointer-events-none"></div>
-              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-4 border-r-4 border-black rounded-br-lg z-10 pointer-events-none"></div>
-
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{
+                scale: 1.03,
+                rotate: index % 2 === 0 ? 1 : -1,
+                transition: { type: "spring", stiffness: 300, damping: 15 },
+              }}
+              whileTap={{ scale: 0.98 }}
+            >
               <FeatureCard feature={feature} index={index} delay={0} />
             </motion.div>
           ))}
