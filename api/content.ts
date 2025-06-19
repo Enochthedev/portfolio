@@ -55,53 +55,6 @@ export function formatDate(dateString: string): string {
 // Simulated API function to fetch projects
 export async function getProjects(): Promise<Project[]> {
   return [
-    {
-      id: 1,
-      title: "React Portfolio",
-      description: "A responsive portfolio website built with React and TailwindCSS.",
-      tags: ["React", "TailwindCSS", "Framer Motion"],
-      image: "/placeholder.svg?height=150&width=300",
-      color: "border-primary",
-    },
-    {
-      id: 2,
-      title: "NFT Marketplace",
-      description: "A decentralized marketplace for buying and selling NFTs.",
-      tags: ["Web3", "Solidity", "Next.js"],
-      image: "/placeholder.svg?height=150&width=300",
-      color: "border-secondary",
-    },
-    {
-      id: 3,
-      title: "Streaming Dashboard",
-      description: "A custom dashboard for managing streams and viewer interactions.",
-      tags: ["React", "Node.js", "Socket.io"],
-      image: "/placeholder.svg?height=150&width=300",
-      color: "border-accent-blue",
-    },
-    {
-      id: 4,
-      title: "3D Portfolio",
-      description: "An interactive 3D portfolio built with Three.js and React Three Fiber.",
-      tags: ["Three.js", "React", "WebGL"],
-      image: "/placeholder.svg?height=150&width=300",
-      color: "border-accent-green",
-    },
-    {
-      id: 5,
-      title: "AI Chat Bot",
-      description: "A custom chatbot for stream interactions using AI.",
-      tags: ["Python", "TensorFlow", "API"],
-      image: "/placeholder.svg?height=150&width=300",
-      color: "border-primary",
-    },
-    {
-      id: 6,
-      title: "Mobile App",
-      description: "A cross-platform mobile app for community engagement.",
-      tags: ["React Native", "Firebase", "Redux"],
-      image: "/placeholder.svg?height=150&width=300",
-      color: "border-secondary",
-    },
+
   ]
 }

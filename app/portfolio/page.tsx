@@ -6,7 +6,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { X, ExternalLink, Github, ChevronDown } from "lucide-react"
-import Persona from "@/components/Persona"
+import Persona from "@/components/persona"
 import { Section } from "@/components/layout/Section"
 import { SectionHeader } from "@/components/layout/SectionHeader"
 import { useMobile } from "@/hooks/use-mobile"
@@ -192,6 +192,7 @@ export default function PortfolioPage() {
                         </div>
 
                         <div className="flex gap-2 md:gap-3">
+                          {project.githubLink && (
                           <Button
                             variant="outline"
                             size={isMobile ? "sm" : "default"}
@@ -199,7 +200,7 @@ export default function PortfolioPage() {
                             asChild
                           >
                             <a
-                              href="https://github.com"
+                              href={project.githubLink}
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
@@ -208,12 +209,33 @@ export default function PortfolioPage() {
                               <span className="text-xs md:text-sm">Code</span>
                             </a>
                           </Button>
-
-                          {project.link && (
+                          )}
+                          {/* Video Demo Button - Only show if videoDemo exists */}
+                          {project.videoDemo && (
                             <Button
                               variant="default"
                               size={isMobile ? "sm" : "default"}
                               className="gap-1 md:gap-2 bg-[#8B5CF6] hover:bg-[#7C3AED]"
+                              asChild
+                            >
+                              <a
+                                href={project.videoDemo}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <ExternalLink size={isMobile ? 14 : 16} />
+                                <span className="text-xs md:text-sm">Watch Demo</span>
+                              </a>
+                            </Button>
+                            )}
+
+                          {/* Live Site Button - Only show if link exists and it's different from videoDemo */}
+                          {project.link && project.link !== project.videoDemo && (
+                            <Button
+                              variant="secondary"
+                              size={isMobile ? "sm" : "default"}
+                              className="gap-1 md:gap-2"
                               asChild
                             >
                               <a
@@ -223,7 +245,7 @@ export default function PortfolioPage() {
                                 onClick={(e) => e.stopPropagation()}
                               >
                                 <ExternalLink size={isMobile ? 14 : 16} />
-                                <span className="text-xs md:text-sm">View Demo</span>
+                                <span className="text-xs md:text-sm">View Site</span>
                               </a>
                             </Button>
                           )}

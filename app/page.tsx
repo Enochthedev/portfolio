@@ -79,7 +79,7 @@ export default function LandingPage() {
   }
 
   const itemVariants = {
-    hidden: { y: 50, opacity: 0, rotate: (index) => (index % 2 === 0 ? -2 : 2) },
+    hidden: { y: 50, opacity: 0, rotate: 0 },
     visible: {
       y: 0,
       opacity: 1,
@@ -185,6 +185,7 @@ export default function LandingPage() {
             <motion.div
               key={index}
               variants={itemVariants}
+              initial={{ rotate: index % 2 === 0 ? -2 : 2 }}
               whileHover={{
                 scale: 1.03,
                 rotate: index % 2 === 0 ? 1 : -1,

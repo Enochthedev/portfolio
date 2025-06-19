@@ -5,65 +5,210 @@ export async function getPortfolioProjects(): Promise<PortfolioProject[]> {
   // In a real app, this would be a fetch call to an API endpoint
   return [
     {
-      id: 1,
-      title: "Personal Portfolio",
-      description:
-        "A responsive portfolio website built with React and TailwindCSS, featuring animated transitions and interactive elements. The design focuses on showcasing projects in a clean, organized manner while providing an engaging user experience.",
-      image: "/placeholder.svg?height=300&width=500",
-      tags: ["React", "TailwindCSS", "Framer Motion", "Responsive Design"],
-      link: "https://example.com",
-      category: "Web Development",
+    id: 1,
+    title: "Personal Portfolio",
+    description: "A responsive portfolio website built with React and TailwindCSS, featuring animated transitions and interactive elements. The design focuses on showcasing projects in a clean, organized manner while providing an engaging user experience.",
+    image: "/placeholder.svg?height=300&width=500",
+    tags: ["React", "TailwindCSS", "Framer Motion", "Responsive Design"],
+    link: "https://wavedidwhat.xyz",
+    githubLink: "https://github.com/enochthedev/portfolio",
+    demoType: "site",
+    category: "Web Development"
     },
     {
       id: 2,
-      title: "NFT Marketplace",
-      description:
-        "A decentralized marketplace for buying and selling NFTs, built with Next.js and Ethereum smart contracts. Users can browse collections, place bids, and manage their digital assets in a secure environment with wallet integration.",
+      title: "RelayHelp",
+      description: "A Discord-integrated customer support platform that enables ticket creation, automation, AI features, and workspace dashboards. Built to streamline server support workflows.",
       image: "/placeholder.svg?height=300&width=500",
-      tags: ["Web3", "Solidity", "Next.js", "Ethereum"],
-      link: "https://example.com",
-      category: "Web3",
+      tags: ["Next.js", "PostgreSQL", "Discord API", "Prisma", "AI"],
+      link: "https://relayhelp.com",
+      githubLink: "https://github.com/enochthedev/RelayHelp-frontend",
+      category: "Web2"
     },
     {
-      id: 3,
-      title: "Streaming Dashboard",
+      id:3,
+      title: "Relayhelp Bot",
+      description: "A powerful Discord bot for RelayHelp that automates ticket management, AI responses, and workspace interactions. Designed to enhance user experience and streamline support processes.",
+      image: "/placeholder.svg?height=300&width=500",
+      tags: ["Discord.js", "TypeScript", "Redis", "PostgreSQL", "AI"],
+      githubLink: "https://github.com/enochthedev/Relayhelp-bot",
+      category: "Web2"
+    },
+    {
+      id: 4,
+      title: "Relayhelp Backend",
+      description: "The backend API for RelayHelp, built with elixir and Phoenix. It provides robust support for ticket management, user authentication, and real-time updates via WebSockets.",
+      image: "/placeholder.svg?height=300&width=500",
+      tags: ["Elixir", "Phoenix", "PostgreSQL", "WebSockets"],
+      githubLink: "https://github.com/enochthedev/Relayhelp-backend",
+      category: "Web2"
+    },
+    {
+      id: 5,
+      title: "Bean Bot",
+      description: "A modular Web3 Discord bot with domains for trading, automation, AI tools, and mempool sniping. Built to support degens, devs, and community managers.",
+      image: "/placeholder.svg?height=300&width=500",
+      tags: ["Discord.js", "TypeScript", "Redis", "Web3", "AI", "Rust"],
+      githubLink: "https://github.com/enochthedev/bean-bot",
+      category: "Web3"
+    },
+    {
+      id: 6,
+      title: "Peeksy",
+      description: "Peeksy turns ordinary links into beautiful, embedded previews using Open Graph and metadata scraping. It’s designed to enhance user experience by making URLs visually engaging in blogs, chat apps, or dashboards.",
+      image: "/placeholder.svg?height=300&width=500",
+      link: "https://peeksyme.vercel.app/",
+      githubLink: "https://github.com/enochthedev/peeksy",
+      tags: ["NextJs", "R3F", "WebGL", "3D"],
+      category: "Creative"
+    },
+    {
+      id: 7,
+      title: "Nuse Bot",
+      description: "An AI-powered assistant for Discord and Telegram that helps users automate tasks, get summaries, and interact with bots across multiple platforms.",
+      image: "/placeholder.svg?height=300&width=500",
+      link: "https://nusebot.vercel.app/",
+      tags: ["Node.js", "Telegram API", "DiscordJS", "Langchain", "LLM","NextJS"],
+      category: "AI & ML"
+    },
+    {
+      id: 8,
+      title: "Mint Bot",
+      description: "A high-speed NFT minting bot with mempool monitoring, CLI, Flashbots support, and Solana + EVM chain integration. Built for power users and DAOs.",
+      image: "/placeholder.svg?height=300&width=500",
+      tags: ["Rust", "Solana", "Ethereum", "Redis", "CLI"],
+      category: "Web3"
+    },
+    {
+      id: 9,
+      title: "Gitsink",
+      description: "A GitHub-to-API sync engine that enriches project metadata using a custom markdown file and offers a developer dashboard with API key control.",
+      image: "/placeholder.svg?height=300&width=500",
+      githubLink: "https://github.com/coffeeRoom/gitsink",
+      tags: ["Node.js", "Supabase", "GitHub API", "Redis", "GraphQL", "Open Source"],
+      category: "Web2"
+    },
+    {
+      id: 10,
+      title: "Drip Pay",
+      description: "A crypto-native billing system for recurring payments and subscriptions using smart contracts. Supports multiple chains and token types.",
+      image: "/placeholder.svg?height=300&width=500",
+      link: "https://drippay.vercel.app",
+      tags: ["Solidity", "ERC20", "Smart Contracts", "Billing", "Next.js"],
+      category: "Web3"
+    },
+    {
+      id: 11,
+      title: "Project Hub",
+      description: "An open-source platform for students to discover and contribute to project ideas based on interests and skillsets. Includes AI recommendations and contributor credits.",
+      image: "/placeholder.svg?height=300&width=500",
+      tags: ["Next.js", "AI", "TailwindCSS", "Education"],
+      category: "Web Development"
+    },
+    {
+      id: 12,
+      title: "Paper Trail",
+      description: "A retro book-themed markdown reader with animated page transitions. Built for immersive reading experiences, blending nostalgia with modern frontend tools.",
+      image: "/placeholder.svg?height=300&width=500",
+      tags: ["Next.js", "TypeScript", "TailwindCSS", "Markdown", "Framer Motion"],
+      link: "https://mdpapertrail.vercel.app",
+      githubLink: "https://github.com/enochthedevname/mdpapertrail",
+      demoType: "site",
+      category: "Creative"
+    },
+    {
+      id: 13,
+      title: "Streamline",
       description:
         "A custom dashboard for managing streams and viewer interactions, with real-time analytics and chat integration. Streamers can monitor engagement, manage alerts, and analyze performance metrics all in one centralized interface.",
       image: "/placeholder.svg?height=300&width=500",
       tags: ["React", "Node.js", "Socket.io", "Chart.js"],
-      link: "https://example.com",
       category: "Web Development",
     },
     {
-      id: 4,
-      title: "3D Portfolio",
+      id: 14,
+      title: "Onchain Bot Tester",
       description:
-        "An interactive 3D portfolio built with Three.js and React Three Fiber, featuring custom animations and effects. Visitors can navigate through a 3D space to explore projects, skills, and experiences in an immersive environment.",
+        "An internal testing environment for Discord bot modules and message listeners. Helps debug features in isolation before deploying to production bots like Bean Bot both onchain and offchain.",
       image: "/placeholder.svg?height=300&width=500",
-      tags: ["Three.js", "React", "WebGL", "3D Modeling"],
-      link: "https://example.com",
-      category: "Creative",
+      tags: ["React", "Node.js", "Socket.io", "Chart.js"],
+      category: "Web Development",
     },
     {
-      id: 5,
-      title: "AI Chat Bot",
+      id: 15,
+      title: "Project Hub",
       description:
-        "A custom chatbot for stream interactions using AI, capable of responding to viewer questions and commands. The bot learns from interactions over time to provide more personalized and relevant responses to community members.",
+        "A Site for students to find projects for their skills and interests.",
       image: "/placeholder.svg?height=300&width=500",
-      tags: ["Python", "TensorFlow", "API", "Machine Learning"],
-      link: "https://example.com",
-      category: "AI & ML",
+      tags: ["React", "Node.js", "Next.js", "TailwindCSS", "AI"],
+      link: "https://myprojecthub.vercel.app/",
+      category: "Web Development",
     },
     {
-      id: 6,
-      title: "Mobile App",
+      id: 16,
+      title: "Discord NPM package",
       description:
-        "A cross-platform mobile app for community engagement, featuring push notifications and user profiles. Members can connect with each other, participate in discussions, and stay updated on the latest events and content releases.",
+        "A custom Discord bot development toolkit published as an NPM package. Simplifies command registration, permission handling, and modular structure for large-scale bot projects.",
       image: "/placeholder.svg?height=300&width=500",
-      tags: ["React Native", "Firebase", "Redux", "Mobile Development"],
-      link: "https://example.com",
-      category: "Mobile",
+      tags: ["Node.js", "Discord.js", "TypeScript", "NPM", "CLI"],
+      link: "https://www.npmjs.com/package/create-discord-ts-bot",
+      category: "Web Development",
     },
+    {
+      id: 17,
+      title: "MetaMint Studio",
+      description: "An IPFS uploader and metadata preview tool designed for mintpad creators. Users can upload images and fill in NFT data to generate valid metadata.json files.",
+      image: "/placeholder.svg?height=300&width=500",
+      tags: ["React", "NFT.storage", "IPFS", "Metadata", "Form Handling"],
+      // Not yet shipped
+      category: "Web3"
+    },
+    {
+      id: 18,
+      title: "Gas Watch",
+      description: "A real-time gas estimation component that fetches and displays live gas fees in native token and USD across chains. Meant to be embedded in dApps and mintpads.",
+      image: "/placeholder.svg?height=300&width=500",
+      tags: ["Ethers.js", "Gas Estimation", "UI Widget", "Chainlink", "Next.js"],
+      // Not yet shipped
+      category: "Web3"
+    },
+    {
+      id: 19,
+      title: "StableMint",
+      description: "A proof-of-concept minting module that enables NFT mints priced in USD using Chainlink price feeds. Converts value to ETH/MATIC at runtime for stable user pricing.",
+      image: "/placeholder.svg?height=300&width=500",
+      tags: ["Solidity", "Chainlink", "ERC721", "Oracle", "Pricing"],
+      // Not yet shipped
+      category: "Web3"
+    },
+    {
+      id: 20,
+      title: "MintFactory",
+      description: "An interface that allows users to deploy their own NFT contracts with custom configurations like supply, royalties, and mint price. Supports front-end contract deployment with safety checks.",
+      image: "/placeholder.svg?height=300&width=500",
+      tags: ["Ethers.js", "Solidity", "Factory Pattern", "Frontend Deployment"],
+      // Not yet shipped
+      category: "Web3"
+    },
+    {
+      id: 21,
+      title: "Launch Lite",
+      description: "A lightweight mintpad MVP that brings together wallet connect, gas estimator, metadata uploader, and contract deployment to let creators launch NFT mints on multiple chains.",
+      image: "/placeholder.svg?height=300&width=500",
+      tags: ["Next.js", "Web3", "IPFS", "Gas Estimation", "Solidity"],
+      // Not yet shipped
+      category: "Web3"
+    },
+    {
+      id: 22,
+      title: "Onchain Watch",
+      description: "A Web3 analytics tool that monitors onchain transactions and triggers Discord alerts for suspicious or tracked wallet activity. Built for degen monitoring and sniping alerts.",
+      image: "/placeholder.svg?height=300&width=500",
+      tags: ["Web3", "Ethers.js", "Discord API", "Node.js"],
+      // Not yet shipped
+      category: "Web3"
+    },
+    
   ]
 }
 
@@ -91,6 +236,8 @@ export function getCategoryBgColor(category: string): string {
       return "bg-[#8B5CF6]/10"
     case "Web3":
       return "bg-[#3B82F6]/10"
+    case "Web2":
+      return "bg-[#3B82F6]/10"
     case "Creative":
       return "bg-[#10B981]/10"
     case "AI & ML":
@@ -107,6 +254,8 @@ export function getCategoryTextColor(category: string): string {
     case "Web Development":
       return "text-[#8B5CF6]"
     case "Web3":
+      return "text-[#3B82F6]"
+    case "Web2":
       return "text-[#3B82F6]"
     case "Creative":
       return "text-[#10B981]"

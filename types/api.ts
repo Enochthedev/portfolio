@@ -1,5 +1,5 @@
 // Portfolio Project Types
-export type ProjectCategory = "Web Development" | "Web3" | "Creative" | "AI & ML" | "Mobile"
+export type ProjectCategory = "Web Development" | "Web3" | "Web2" | "Creative" | "AI & ML" | "Mobile"
 
 export interface PortfolioProject {
   id: number
@@ -8,6 +8,9 @@ export interface PortfolioProject {
   image: string
   tags: string[]
   link?: string
+  githubLink?: string
+  videoDemo?: string
+  demoType?: "video" | "site"
   category: ProjectCategory
 }
 

@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import Persona from "@/components/Persona"
+import Persona from "@/components/persona"
 import { NavItem } from "@/components/nav-item"
 import { useMobile } from "@/hooks/use-mobile"
 

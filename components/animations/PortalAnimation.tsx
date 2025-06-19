@@ -63,7 +63,6 @@ export function PortalAnimation({ className = "" }: PortalAnimationProps) {
             alt="Portal"
             width={300}
             height={300}
-            loading="lazy"
             className="w-full h-full"
             priority={true}
           />
