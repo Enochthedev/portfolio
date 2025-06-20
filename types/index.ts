@@ -4,6 +4,7 @@ import type { ReactNode } from "react"
 export interface BaseProps {
   className?: string
   children?: ReactNode
+  onMouseMove?: (e: React.MouseEvent) => void
 }
 
 // NFT related types

@@ -71,27 +71,27 @@ export default function AboutPage() {
 
   const timelineEvents: TimelineEvent[] = [
     {
-      year: 2015,
+      year: 2018,
       title: "The Beginning",
       description: "Started learning web development and fell in love with creating digital experiences.",
     },
     {
-      year: 2019,
+      year: 2022,
       title: "Streaming Debut",
       description: "Went live for the first time, sharing my coding journey with a small but supportive audience.",
     },
     {
-      year: 2020,
+      year: 2023,
       title: "Community Growth",
-      description: "Our community grew exponentially as more people discovered the channel.",
+      description: "Built a thriving community of fellow developers and creators, expanding my reach and trying new things.",
     },
     {
-      year: 2021,
+      year: 2023,
       title: "Web3 Exploration",
       description: "Dove into blockchain technology and started creating NFT collections.",
     },
     {
-      year: 2023,
+      year: 2024,
       title: "WaveDidWhat Launch",
       description: "Launched this website to bring together all aspects of my digital presence.",
     },
@@ -121,8 +121,10 @@ export default function AboutPage() {
     })
   }
 
-  return (
-    <ParallaxContainer
+
+return (
+  <ParallaxContainer
+
       className="relative min-h-screen py-8 md:py-12 px-4 bg-gradient-to-b from-[#F3F4F6] to-[#FAFAFA]"
       onMouseMove={handleMouseMove}
     >
