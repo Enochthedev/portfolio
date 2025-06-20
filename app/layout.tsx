@@ -33,7 +33,9 @@ export const metadata: Metadata = {
   title: "WaveDidWhat - Streams, Codes, and Vibes",
   description: "A cartoon universe of streams, coding projects, and good vibes",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
-    generator: 'v0.dev'
+  icons: {
+    icon: "/favicon.ico", // or "/favicon.png" if you prefer
+  },
 }
 
 export default function RootLayout({
