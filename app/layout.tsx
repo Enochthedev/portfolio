@@ -36,6 +36,32 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico", // or "/favicon.png" if you prefer
   },
+  keywords: ['WaveDidWhat', 'streamer', 'developer', 'portfolio', 'anime', 'wave'],
+  authors: [{ name: 'Wave' }],
+  robots: 'index, follow',
+  alternates: { canonical: 'https://www.wavedidwhat.xyz/' },
+  openGraph: {
+  title: "WaveDidWhat",
+  description: "...",
+  images: [
+    {
+      url: "/og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "WaveDidWhat Hero",
+    },
+  ],
+  type: "website",
+  locale: "en_US",
+  url: "https://wavedidwhat.xyz",
+},
+twitter: {
+  card: "summary_large_image",
+  site: "@wavedidwhat",
+  title: "WaveDidWhat",
+  description: "...",
+  images: ["/og-image.png"],
+},
 }
 
 export default function RootLayout({
