@@ -10,6 +10,14 @@ type PersonaProps = {
   className?: string
 }
 
+/**
+ * Persona component for displaying animated character images
+ *
+ * @param emotion - Emotion of the persona
+ * @param size - Size of the persona image
+ * @param animate - Whether to animate the persona
+ * @param className - Additional CSS classes
+ */
 export default function Persona({
   emotion = "default",
   size = "medium",
@@ -22,9 +30,8 @@ export default function Persona({
     home: "/images/wave-character.png",
     about: "/images/about.png",
     content: "/images/content.png",
-    portfolio: "/images/portfolio.png",
+    portfolio: "/images/wave-character.png",
     web3: "/images/nft.png",
-    nft: "/images/nft.png",
     community: "/images/wave-character.png",
     excited: "/images/wave-character.png",
     confused: "/images/wave-character.png",
@@ -64,7 +71,6 @@ export default function Persona({
         alt={`Persona with ${emotion} emotion`}
         width={width}
         height={height}
-        loading="lazy"
         className="drop-shadow-md"
       />
     </motion.div>
